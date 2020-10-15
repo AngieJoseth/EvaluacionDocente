@@ -13,3 +13,5 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+Route::apiResource('teacher_eval', 'App\Http\Controllers\TeacherEval\SelfAppraisalController');
+Route::apiResource('teacher_eval_type', 'App\Http\Controllers\TeacherEval\EvaluationTypeController');
