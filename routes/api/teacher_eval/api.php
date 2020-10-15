@@ -15,7 +15,7 @@ use App\Http\Controllers\TeacherEval\StudentEvaluationController;
 |
 */
 
-Route::apiResource('evaluation_types', EvaluationTypeController::class);
+Route::apiResource('evaluation_types', App\Http\Controllers\TeacherEval\EvaluationTypeController::class);
 Route::apiResource('student_evaluations', StudentEvaluationController::class); 
 Route::apiResource('peer_evaluations', PeerEvaluationController::class);
 Route::apiResource('self_evaluations', SelfEvaluationController::class);
