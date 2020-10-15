@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TeacherEval\StudentEvaluationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,3 +14,17 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+
+Route::apiResource('evaluation_types', EvaluationTypeController::class);
+Route::apiResource('student_evaluations', StudentEvaluationController::class); 
+Route::apiResource('peer_evaluations', PeerEvaluationController::class);
+Route::apiResource('self_evaluations', SelfEvaluationController::class);
+
+
+
+
+
+
+
+// Route::get('getTipoEvaluacion','TeacherEval\StudentEvaluationController@getTipoEvaluacion');
+// Route::get('index','TeacherEval\StudentEvaluationController@index');

@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\TeacherEval;
 
 use Illuminate\Http\Request;
-
-class CoordinationEvaluation extends Controller
+use App\Http\Controllers\Controller;
+class Question extends Controller
 {
     public function index(){
-        return "Hola Cristian";
+        return "Hola mundo";
     } 
 
     public function store(Request $request){
@@ -21,4 +21,5 @@ class CoordinationEvaluation extends Controller
     public function destroy($id){
         return $id;
     }
+
 }
