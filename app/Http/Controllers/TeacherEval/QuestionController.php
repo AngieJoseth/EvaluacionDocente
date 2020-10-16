@@ -5,6 +5,7 @@ namespace App\Http\Controllers\TeacherEval;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\TeacherEval\Question;
+use App\Models\TeacherEval\EvaluationType;
 use App\Models\Ignug\Catalogue;
 use App\Models\Ignug\State;
 
@@ -29,18 +30,20 @@ class QuestionController extends Controller
        $dataQuestion = $data['question'];
        $dataState = $data['state'];
        $dataTypeId= $data['type_id'];
-
+       $dataEvaluationType= $data['evaluation_type_id'];
+       
         $question = new Question();
-        $question->evaluation_type_id = $dataQuestion['evaluation_type_id'];
         $question->code = $dataQuestion['code'];
         $question->order = $dataQuestion['order'];
         $question->name = $dataQuestion['name'];
 
         $state = State::findOrFail($dataState['id']);
         $type_id = Catalogue::find($dataTypeId['id']);
+        $evaluationType = EvaluationType::findOrFail($dataEvaluationType['id']);
   
         $question->state()->associate($state);
         $question->type()->associate($type_id);
+        $question->evaluationType()->associate($evaluationType);
 
         $question->save();
 
@@ -53,12 +56,13 @@ class QuestionController extends Controller
     public function update(Request $request, $id)
     {
         $data = $request->json()->all();
+
         $dataQuestion = $data['question'];
         $dataState = $data['state'];
         $dataTypeId= $data['type_id'];
+       $dataEvaluationType = $data['evaluation_type_id'];
 
-        $question = new Question();
-        $question->evaluation_type_id = $dataQuestion['evaluation_type_id'];
+       $question = Question::findOrFail($id);
         $question->code = $dataQuestion['code'];
         $question->order = $dataQuestion['order'];
         $question->name = $dataQuestion['name'];
@@ -66,9 +70,11 @@ class QuestionController extends Controller
 
         $state = State::findOrFail($dataState['id']);
         $type_id = Catalogue::find($dataTypeId['id']);
+        $evaluationType = EvaluationType::findOrFail($dataEvaluationType['id']);
 
         $question->state()->associate($state);
         $question->type()->associate($type_id);
+        $question->evaluationType()->associate($evaluationType);
         
         $question->save();
         return response()->json([
