@@ -20,5 +20,9 @@ class PairResult extends Model implements Auditable
     {
         return $this->belongsTo(Evaluation::class);
     }
+    public function state()
+    {
+        return $this->belongsTo(State::class);
+    }
     
 }

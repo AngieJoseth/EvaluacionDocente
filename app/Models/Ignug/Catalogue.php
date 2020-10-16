@@ -34,7 +34,7 @@ class Catalogue extends Model implements Auditable
     {
         return $this->belongsTo(State::class);
     }
-
+    
     public function parent()
     {
         return $this->belongsTo(Catalogue::class, 'parent_id');
