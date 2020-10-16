@@ -60,10 +60,9 @@ class EvaluationTypeController extends Controller
     public function update(Request $request, $id)
     {
         $data = $request->json()->all();
+        
         $dataEvaluationType = $data['evaluationtype'];
         $dataParentCode = $data['parent_code'];
-
-        
         $dataState = $data['state'];
         
         $evaluationType = EvaluationType::findOrFail($id);
