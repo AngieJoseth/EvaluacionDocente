@@ -2,21 +2,21 @@
 
 namespace App\Models\TeacherEval;
 
-
-use App\Models\Ignug\State;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use OwenIt\Auditing\Contracts\Auditable;
+use App\Models\Ignug\State;
 
 class PairResult extends Model implements Auditable
 {
     use \OwenIt\Auditing\Auditable;
+    use HasFactory;
+
     protected $connection = 'pgsql-teacher-eval';
 
-    public function answer_question()
-    {
-        return $this->belongsTo(AnswerQuestion::class);
-    }
-    public function evaluation()
+    protected $fillable = [];
+
+    public function evaluations()
     {
         return $this->belongsTo(Evaluation::class);
     }
@@ -24,5 +24,5 @@ class PairResult extends Model implements Auditable
     {
         return $this->belongsTo(State::class);
     }
-
+    
 }

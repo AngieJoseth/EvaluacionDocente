@@ -3,11 +3,14 @@
 
 namespace App\Models\TeacherEval;
 
-use App\Models\Ignug\State;
-use App\Models\Ignug\Teacher;
-use App\Models\TeacherEval\EvaluationType;
+
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use OwenIt\Auditing\Contracts\Auditable;
+use App\Models\TeacherEval\EvaluationType;
+use App\Models\Ignug\State;
+use App\Models\Ignug\Catalogue;
+use App\Models\Ignug\Teacher;
 
 class Evaluation extends Model 
 {
@@ -15,10 +18,12 @@ class Evaluation extends Model
     protected $fillable=[
         'result'        
     ];
+
     public function teacher()
     {
         return $this->belongsTo(Teacher::class);
     }
+
     public function state()
     {
         return $this->belongsTo(State::class);
@@ -26,6 +31,12 @@ class Evaluation extends Model
     public function evaluation_type()
     {
         return $this->belongsTo(EvaluationType::class);
+    }
+
+
+    public function pairResult()
+    {
+        return $this->hasMany(PairResult::class);
     }
 
 }

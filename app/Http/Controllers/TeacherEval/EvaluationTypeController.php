@@ -60,18 +60,25 @@ class EvaluationTypeController extends Controller
     public function update(Request $request, $id)
     {
         $data = $request->json()->all();
+        
         $dataEvaluationType = $data['evaluationtype'];
-
+        $dataParentCode = $data['parent_code'];
         $dataState = $data['state'];
-
+        
         $evaluationType = EvaluationType::findOrFail($id);
         $evaluationType->code = $dataEvaluationType['code'];
         $evaluationType->name = $dataEvaluationType['name'];
         $evaluationType->percentage = $dataEvaluationType['percentage'];
         $evaluationType->global_percentage = $dataEvaluationType['global_percentage'];
         
-
+        $parentCode = EvaluationType::find($dataParentCode['id']);
         $state = State::findOrFail($dataState['id']);
+
+        if (!$parentCode) {
+            $evaluationType->parent_id = null;
+        }else{
+            $evaluationType->parent()->associate($parentCode);
+        }
 
         $evaluationType->state()->associate($state);
         

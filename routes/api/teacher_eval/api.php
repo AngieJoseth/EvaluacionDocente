@@ -20,7 +20,13 @@ use App\Http\Controllers\TeacherEval\EvaluationController;
 |
 */
 
-Route::apiResource('evaluation_types', EvaluationTypeController::class);
+Route::apiResource('evaluation_types', App\Http\Controllers\TeacherEval\EvaluationTypeController::class);
+Route::apiResource('questions', App\Http\Controllers\TeacherEval\QuestionController::class);
+Route::get('answers', 'App\Http\Controllers\TeacherEval\QuestionController@indexAnswer'); 
+Route::get('answers/{id}', 'App\Http\Controllers\TeacherEval\QuestionController@showAnswer'); 
+Route::post('answers', 'App\Http\Controllers\TeacherEval\QuestionController@storeAnswer');
+Route::put('answers/{id}', 'App\Http\Controllers\TeacherEval\QuestionController@updateAnswer');
+Route::delete('answers/{id}', 'App\Http\Controllers\TeacherEval\QuestionController@destroyAnswer'); 
 Route::apiResource('student_evaluations', StudentEvaluationController::class); 
 Route::apiResource('pair_evaluations', PairEvaluationController::class);
 

@@ -2,20 +2,25 @@
 
 namespace App\Models\TeacherEval;
 
-use App\Models\Ignug\State;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use OwenIt\Auditing\Contracts\Auditable;
+use App\Models\Ignug\State;
 
-class EvaluationType extends Model 
+class EvaluationType extends Model implements Auditable
 {
-    
+    use \OwenIt\Auditing\Auditable;
+    use HasFactory;
+
     protected $connection = 'pgsql-teacher-eval';
-    protected $fillable=[
+
+    protected $fillable = [
         'name',
         'code',
         'percentage',
-        'global_percentage'
+        'global_percentage',
     ];
+
     public function state()
     {
         return $this->belongsTo(State::class);
@@ -26,13 +31,12 @@ class EvaluationType extends Model
         return $this->belongsTo(EvaluationType::class, 'parent_id');
     }
 
-    public function children()
+/*     public function children()
     {
         return $this->hasMany(EvaluationType::class, 'parent_id');
     }
-
     public function tasks()
     {
         return $this->hasMany(Catalogue::class, 'parent_id');
-    }
+    } */
 }

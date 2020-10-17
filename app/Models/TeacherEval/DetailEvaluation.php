@@ -2,20 +2,27 @@
 
 namespace App\Models\TeacherEval;
 
-
-use App\Models\Ignug\State;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use OwenIt\Auditing\Contracts\Auditable;
+use App\Models\Ignug\State;
 
 class DetailEvaluation extends Model implements Auditable
 {
     use \OwenIt\Auditing\Auditable;
+    use HasFactory;
+
     protected $connection = 'pgsql-teacher-eval';
-    protected $fillable=[
-        'detail_evaluationable_type'
-    ];
+
+    protected $fillable = [];
+
     public function state()
     {
         return $this->belongsTo(State::class);
+    }
+
+    public function detailEvaluationable()
+    {
+        return $this->morphTo();
     }
 }
