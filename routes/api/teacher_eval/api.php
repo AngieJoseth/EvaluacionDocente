@@ -28,6 +28,7 @@ Route::post('answers', 'App\Http\Controllers\TeacherEval\QuestionController@stor
 Route::put('answers/{id}', 'App\Http\Controllers\TeacherEval\QuestionController@updateAnswer');
 Route::delete('answers/{id}', 'App\Http\Controllers\TeacherEval\QuestionController@destroyAnswer'); 
 Route::apiResource('evaluations', App\Http\Controllers\TeacherEval\EvaluationController::class);
+Route::apiResource('detail_evaluations', App\Http\Controllers\TeacherEval\DetailEvaluationController::class);
 
 Route::apiResource('student_evaluations', StudentEvaluationController::class); 
 Route::apiResource('pair_evaluations', PairEvaluationController::class);

@@ -4,6 +4,7 @@ namespace App\Models\Ignug;
 
 use App\Models\Authentication\User;
 use App\Models\Attendance\Attendance;
+use App\Models\TeacherEval\DetailEvaluation;
 use Illuminate\Database\Eloquent\Model;
 use OwenIt\Auditing\Contracts\Auditable;
 
@@ -32,5 +33,9 @@ class Teacher extends Model implements Auditable
     public function careers()
     {
         return $this->morphToMany(Career::class, 'careerable');
+    }
+
+    public function detailEvaluations(){
+        return $this->morphToMany(DetailEvaluation::class, 'detail_evaluationable','detail_evaluations','detail_evaluationable_id','detail_evaluationable_type');
     }
 }
