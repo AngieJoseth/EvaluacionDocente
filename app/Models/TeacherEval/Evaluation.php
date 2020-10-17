@@ -1,24 +1,22 @@
 <?php
 
+
 namespace App\Models\TeacherEval;
+
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use OwenIt\Auditing\Contracts\Auditable;
+use App\Models\TeacherEval\EvaluationType;
 use App\Models\Ignug\State;
 use App\Models\Ignug\Catalogue;
 use App\Models\Ignug\Teacher;
 
-class Evaluation extends Model implements Auditable
+class Evaluation extends Model 
 {
-    use \OwenIt\Auditing\Auditable;
-    use HasFactory;
-
     protected $connection = 'pgsql-teacher-eval';
-
-    protected $fillable = [
-        'percentage',
-        'result'
+    protected $fillable=[
+        'result'        
     ];
 
     public function teacher()
@@ -30,11 +28,11 @@ class Evaluation extends Model implements Auditable
     {
         return $this->belongsTo(State::class);
     }
-
-    public function type()
+    public function evaluation_type()
     {
-        return $this->belongsTo(Catalogue::class);
+        return $this->belongsTo(EvaluationType::class);
     }
+
 
     public function pairResult()
     {

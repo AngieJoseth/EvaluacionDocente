@@ -35,7 +35,6 @@ class EvaluationType extends Model implements Auditable
     {
         return $this->hasMany(EvaluationType::class, 'parent_id');
     }
-
     public function tasks()
     {
         return $this->hasMany(Catalogue::class, 'parent_id');

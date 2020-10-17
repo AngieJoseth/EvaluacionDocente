@@ -3,15 +3,18 @@
 namespace App\Http\Controllers\TeacherEval;
 
 use App\Http\Controllers\Controller;
-use App\Models\Ignug\Catalogue;
 use App\Models\Ignug\State;
+use App\Models\Ignug\Teacher;
+use App\Models\TeacherEval\Evaluation;
+use App\Models\TeacherEval\EvaluationType;
 use Illuminate\Http\Request;
 
 class EvaluacionController extends Controller
 {
     public function index()
     {
-        return Catalogue::all();
+        //return Evaluation::all();
+        return "hola";
     }
 
     public function show($id)
@@ -26,32 +29,29 @@ class EvaluacionController extends Controller
 
     public function store(Request $request)
     {
-       $data = $request->json()->all();
-       $dataCatalogue = $data['catalogue'];
-       $dataState = $data['state'];
+        $data = $request->json()->all();
+        $dataEvaluation = $data['evaluation'];
+        $dataTeacher = $data['teacher'];
+        $dataEvaluationType = $data['evaluation_type'];
+        $dataState = $data['state'];
 
-       // Catalogue::create($dataCatalogue);
-//        return Catalogue::create([
-//            'code'=>$dataCatalogue['code'],
-//            'name'=>$dataCatalogue['name'],
-//            'icon'=>$dataCatalogue['icon'],
-//            'type'=>$dataCatalogue['type'],
-//        ]);
-        $catalogue = new Catalogue();
-        $catalogue->code = $dataCatalogue['code'];
-        $catalogue->name = $dataCatalogue['name'];
-        $catalogue->icon = $dataCatalogue['icon'];
-        $catalogue->type = $dataCatalogue['type'];
+        $evaluation = new Evaluation();
+        $evaluation->result = $dataEvaluation['result'];
 
         $state = State::findOrFail($dataState['id']);
+        $teacher = Teacher::findOrFail($dataTeacher['id']);
+        $evaluationType = EvaluationType::findOrFail($dataEvaluationType['id']);
 
-        $catalogue->state()->associate($state);
+        $evaluation->state()->associate($state);
+        $evaluation->teacher()->associate($teacher);
+        $evaluation->evaluationType ()->associate($evaluationType);
 
-        $catalogue->save();
+
+        $evaluation->save();
 
         return response()->json([
         'data' => [
-            'catalogues' => $catalogue
+            'evaluation' => $evaluation
         ]
     ], 201);
     }

@@ -11,7 +11,7 @@ class EvaluationTypeController extends Controller
 {
     public function index()
     {
-        return EvaluationType::all();
+         return EvaluationType::all();
     }
 
     public function show($id)

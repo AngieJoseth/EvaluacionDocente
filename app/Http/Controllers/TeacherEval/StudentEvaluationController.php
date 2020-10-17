@@ -1,6 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\TeacherEval;
+
+use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 use App\Models\TeacherEval\EvaluationType;
@@ -9,10 +11,6 @@ use App\Models\TeacherEval\EvaluationType;
 class StudentEvaluation extends Controller
 {
     
-    public function getEvaluationType(){
-        $evaluacion= EvaluationType::get();
-        return response()->json(['type'=>$evaluacion],200);
-    }
 
     public function index(){
         return "Hola mundo";
