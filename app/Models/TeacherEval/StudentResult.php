@@ -1,7 +1,7 @@
 <?php
 
-<<<<<<< HEAD
-namespace App\Models;
+namespace App\Models\TeacherEval;
+
 
 use App\Models\Ignug\State;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -28,15 +28,4 @@ class StudentResult extends Model implements Auditable
         return $this->belongsTo(State::class);
     }
 
-
-=======
-namespace App\Models\TeacherEval;
-
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-
-class StudentResult extends Model
-{
-    use HasFactory;
->>>>>>> e6a024fa36c780b4b4b9f3451952b4f75f743fe9
 }

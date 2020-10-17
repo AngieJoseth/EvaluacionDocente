@@ -1,10 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\TeacherEval;
+
+use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 
-class PeerEvaluation extends Controller
+class PairEvaluation extends Controller
 {
     public function index(){
         return "Hola Cristian";

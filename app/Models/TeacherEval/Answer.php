@@ -1,7 +1,6 @@
 <?php
 
-<<<<<<< HEAD
-namespace App\Models;
+namespace App\Models\TeacherEval;
 
 use App\Models\Ignug\State;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -25,14 +24,4 @@ class Answer extends Model implements Auditable
     {
         return $this->belongsTo(Type::class);
     }
-=======
-namespace App\Models\TeacherEval;
-
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-
-class Answer extends Model
-{
-    use HasFactory;
->>>>>>> e6a024fa36c780b4b4b9f3451952b4f75f743fe9
 }

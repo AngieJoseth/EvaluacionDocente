@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\TeacherEval;
 
 
 use App\Models\Ignug\State;

@@ -3,6 +3,11 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TeacherEval\StudentEvaluationController;
+use App\Http\Controllers\TeacherEval\EvaluationTypeController;
+use App\Http\Controllers\TeacherEval\PairEvaluationController;
+use App\Http\Controllers\TeacherEval\SelfEvaluationController;
+use App\Http\Controllers\TeacherEval\EvaluationController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -17,8 +22,12 @@ use App\Http\Controllers\TeacherEval\StudentEvaluationController;
 
 Route::apiResource('evaluation_types', EvaluationTypeController::class);
 Route::apiResource('student_evaluations', StudentEvaluationController::class); 
-Route::apiResource('peer_evaluations', PeerEvaluationController::class);
+Route::apiResource('pair_evaluations', PairEvaluationController::class);
+
 Route::apiResource('self_evaluations', SelfEvaluationController::class);
+
+Route::apiResource('evaluations', EvaluationController::class);
+
 
 
 
