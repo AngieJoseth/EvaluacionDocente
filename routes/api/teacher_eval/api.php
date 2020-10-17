@@ -27,12 +27,12 @@ Route::get('answers/{id}', 'App\Http\Controllers\TeacherEval\QuestionController@
 Route::post('answers', 'App\Http\Controllers\TeacherEval\QuestionController@storeAnswer');
 Route::put('answers/{id}', 'App\Http\Controllers\TeacherEval\QuestionController@updateAnswer');
 Route::delete('answers/{id}', 'App\Http\Controllers\TeacherEval\QuestionController@destroyAnswer'); 
+Route::apiResource('evaluations', App\Http\Controllers\TeacherEval\EvaluationController::class);
+
 Route::apiResource('student_evaluations', StudentEvaluationController::class); 
 Route::apiResource('pair_evaluations', PairEvaluationController::class);
-
 Route::apiResource('self_evaluations', SelfEvaluationController::class);
 
-Route::apiResource('evaluations', EvaluationController::class);
 
 
 

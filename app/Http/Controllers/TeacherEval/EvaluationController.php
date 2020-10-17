@@ -9,12 +9,12 @@ use App\Models\TeacherEval\Evaluation;
 use App\Models\TeacherEval\EvaluationType;
 use Illuminate\Http\Request;
 
-class EvaluacionController extends Controller
+class EvaluationController extends Controller
 {
     public function index()
     {
         //return Evaluation::all();
-        return "hola";
+        return Evaluation::all();
     }
 
     public function show($id)
@@ -30,6 +30,7 @@ class EvaluacionController extends Controller
     public function store(Request $request)
     {
         $data = $request->json()->all();
+        
         $dataEvaluation = $data['evaluation'];
         $dataTeacher = $data['teacher'];
         $dataEvaluationType = $data['evaluation_type'];
@@ -96,4 +97,3 @@ class EvaluacionController extends Controller
         ], 201);
     }
 }
-
