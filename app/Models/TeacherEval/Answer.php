@@ -34,7 +34,7 @@ class Answer extends Model implements Auditable
 
     public function questions()
     {
-        return $this->belongsToMany(Question::class);
+        return $this->belongsToMany(Question::class, 'answer_question','answer_id','question_id')->withTimestamps();
     }
 
 }
