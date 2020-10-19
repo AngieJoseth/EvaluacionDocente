@@ -60,39 +60,47 @@ class EvaluationController extends Controller
     public function update(Request $request, $id)
     {
         $data = $request->json()->all();
-        $dataCatalogue = $data['catalogue'];
+        
+        $dataEvaluation = $data['evaluation'];
+        $dataTeacher = $data['teacher'];
+        $dataEvaluationType = $data['evaluation_type'];
         $dataState = $data['state'];
 
-        $catalogue = Catalogue::findOrFail($id);
-        $catalogue->code = $dataCatalogue['code'];
-        $catalogue->name = $dataCatalogue['name'];
-        $catalogue->icon = $dataCatalogue['icon'];
-        $catalogue->type = $dataCatalogue['type'];
+        $evaluation = Evaluation::findOrFail($id);
+        $evaluation->result = $dataEvaluation['result'];
 
         $state = State::findOrFail($dataState['id']);
-        $catalogue->state()->associate($state);
-        $catalogue->save();
+        $teacher = Teacher::findOrFail($dataTeacher['id']);
+        $evaluationType = EvaluationType::findOrFail($dataEvaluationType['id']);
+
+        $evaluation->state()->associate($state);
+        $evaluation->teacher()->associate($teacher);
+        $evaluation->evaluationType ()->associate($evaluationType);
+
+
+        $evaluation->save();
+
         return response()->json([
-            'data' => [
-                'evaluaciones' => $catalogue
-            ]
-        ], 201);
+        'data' => [
+            'evaluation' => $evaluation
+        ]
+    ], 201);
     }
 
     public function destroy($id)
     {
-        $catalogue = Catalogue::findOrFail($id);
-        $catalogue->delete();
-//        $catalogue->update([
-//            'code'=>'0'
-//        ]);
+        $evaluation = Evaluation::findOrFail($id);
+/*         $catalogue->delete(); */
+/*         $evaluationType->update([
+            'state_id'=>'3'
+        ]); */
 
-        //$catalogue->code = '0';
-//        $catalogue->save();
+        $evaluation->state_id = '2';
+        $evaluation->save();
 
         return response()->json([
             'data' => [
-                'evaluaciones' => $catalogue
+                'evaluation' => $evaluation
             ]
         ], 201);
     }

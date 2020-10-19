@@ -28,7 +28,7 @@ class Evaluation extends Model
     {
         return $this->belongsTo(State::class);
     }
-    public function evaluation_type()
+    public function evaluationType()
     {
         return $this->belongsTo(EvaluationType::class);
     }
