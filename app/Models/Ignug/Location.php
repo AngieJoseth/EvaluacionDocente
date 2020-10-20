@@ -10,7 +10,7 @@ class Location extends Model implements Auditable
 {
     use \OwenIt\Auditing\Auditable;
 
-    protected $connection = 'pgsql-job-board';
+    protected $connection = 'pgsql-ignug';
     protected $fillable = [
         'code',
         'name',

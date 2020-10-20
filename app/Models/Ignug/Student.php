@@ -8,7 +8,7 @@ use App\Models\TeacherEval\DetailEvaluation;
 use Illuminate\Database\Eloquent\Model;
 use OwenIt\Auditing\Contracts\Auditable;
 
-class Teacher extends Model implements Auditable
+class Student extends Model implements Auditable
 {
     use \OwenIt\Auditing\Auditable;
 
@@ -37,9 +37,5 @@ class Teacher extends Model implements Auditable
 
     public function detailEvaluations(){
         return $this->morphToMany(DetailEvaluation::class, 'detail_evaluationable','detail_evaluations','detail_evaluationable_id','detail_evaluationable_type');
-    }
-    public function subjectTeacher()
-    {
-        return $this->hasMany(SubjectTeacher::class);
     }
 }

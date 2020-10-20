@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Subject extends Model
 {
     use HasFactory;
+    protected $connection = 'pgsql-ignug';
+    
+    public function subjectTeacher()
+    {
+        return $this->hasMany(SubjectTeacher::class);
+    }
+
 }

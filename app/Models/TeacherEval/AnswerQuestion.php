@@ -5,10 +5,11 @@ namespace App\Models\TeacherEval;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class AnswerQuestion extends Model implements Auditable
+class AnswerQuestion extends Model 
 {
-    use \OwenIt\Auditing\Auditable;
+
     protected $connection = 'pgsql-teacher-eval';
+    protected $table ='answer_question';
    
     public function answer()
     {

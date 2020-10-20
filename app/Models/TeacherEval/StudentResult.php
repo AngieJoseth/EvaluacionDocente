@@ -6,13 +6,16 @@ use App\Models\Ignug\State;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use OwenIt\Auditing\Contracts\Auditable;
+use App\Models\Ignug\SubjectTeacher;
+use App\Models\Ignug\Student;
 
-class StudentResult extends Model implements Auditable
+
+class StudentResult extends Model 
 {
-    use \OwenIt\Auditing\Auditable;
+    
     protected $connection = 'pgsql-teacher-eval';
 
-    public function subject_teacher()
+    public function subjectTeacher()
     {
         return $this->belongsTo(SubjectTeacher::class);
     }
@@ -23,6 +26,9 @@ class StudentResult extends Model implements Auditable
     public function state()
     {
         return $this->belongsTo(State::class);
+    }
+    public function answerQuestion(){
+        return $this->belongsTo(AnswerQuestion::class);
     }
 
 
