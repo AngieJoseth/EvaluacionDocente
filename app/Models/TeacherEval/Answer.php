@@ -32,9 +32,14 @@ class Answer extends Model implements Auditable
         return $this->belongsTo(Catalogue::class);
     }
 
-    public function answerQuestion()
+/*     public function answerQuestion()
     {
         return $this->hasMany(AnswerQuestion::class);
+    } */
+
+    public function questions()
+    {
+        return $this->belongsToMany(Question::class, 'answer_question','answer_id','question_id')->withPivot('id')->withTimestamps();
     }
 
 }
