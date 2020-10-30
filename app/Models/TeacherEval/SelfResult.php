@@ -4,6 +4,7 @@ namespace App\Models\teacherEval;
 
 
 use App\Models\Ignug\State;
+use App\Models\Ignug\Teacher;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use OwenIt\Auditing\Contracts\Auditable;
@@ -20,5 +21,9 @@ class SelfResult extends Model implements Auditable
     public function state()
     {
         return $this->belongsTo(State::class);
+    }
+    public function answerQuestion()
+    {
+        return $this->belongsTo(AnswerQuestion::class);
     }
 }
