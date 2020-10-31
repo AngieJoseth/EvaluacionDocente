@@ -16,9 +16,13 @@ class PairResult extends Model implements Auditable
 
     protected $fillable = [];
 
-    public function evaluation()
+    public function detailEvaluation()
     {
-        return $this->belongsTo(Evaluation::class);
+        return $this->belongsTo(DetailEvaluation::class);
+    }
+    public function answerQuestion()
+    {
+        return $this->belongsTo(AnswerQuestion::class);
     }
     public function state()
     {

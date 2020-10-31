@@ -19,11 +19,11 @@ class EvaluationController extends Controller
 
     public function show($id)
     {
-        $catalogue =  Catalogue::findOrFail($id);
+        $evaluation =  Evaluation::findOrFail($id);
 //        $catalogue =  Catalogue::where('id',$id)->get();
         return response()->json([
             'data' => [
-                'catalogue' => $catalogue
+                'evaluation' => $evaluation
             ]]);
     }
 
@@ -45,8 +45,7 @@ class EvaluationController extends Controller
 
         $evaluation->state()->associate($state);
         $evaluation->teacher()->associate($teacher);
-        $evaluation->evaluationType ()->associate($evaluationType);
-
+        $evaluation->evaluationType()->associate($evaluationType);
 
         $evaluation->save();
 
@@ -76,7 +75,6 @@ class EvaluationController extends Controller
         $evaluation->state()->associate($state);
         $evaluation->teacher()->associate($teacher);
         $evaluation->evaluationType ()->associate($evaluationType);
-
 
         $evaluation->save();
 
