@@ -26,7 +26,7 @@ class SelfEvaluationController extends Controller
         $dataTeacher = $data['teacher'];
         $dataAnswerQuestions = $data['answer_questions'];
         $teacher = Teacher::findOrFail($dataTeacher['id']);
-        $state = State::where('code', 1)->first();
+        $state = State::where('code', '1')->first();
 
         foreach ($dataAnswerQuestions as $eachAnswerQuestion) {
             $selfResult = new SelfResult();
@@ -52,12 +52,15 @@ class SelfEvaluationController extends Controller
         
         $resultEvaluation = 0;
         foreach($AnswerQuestions as $eachAnswerQuestion){
+
             $answerQuestion = AnswerQuestion::where('id',$eachAnswerQuestion['id'])->first();
             $value = $answerQuestion->answer()->first()->value;
             $evaluationTypeId = $answerQuestion->question()->first()->evaluation_type_id;
-            $evaluationTypeParentId = EvaluationType::where('id',$evaluationTypeId)->first()->parent_id;
-            $percentage = EvaluationType::where('id',$evaluationTypeParentId)->first()->percentage;
+            $evaluationTypeParent = EvaluationType::where('id',$evaluationTypeId)->first();
+            $percentage = $evaluationTypeParent->parent()->first()->percentage;
+            
             $resultEvaluation += ($value*$percentage)/100;
+
         }
         $this->createEvaluation($teacherId,$evaluationTypeId,$resultEvaluation);
     }
