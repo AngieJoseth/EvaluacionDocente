@@ -23,7 +23,6 @@ class Evaluation extends Model
     {
         return $this->belongsTo(Teacher::class);
     }
-
     public function state()
     {
         return $this->belongsTo(State::class);
@@ -32,11 +31,13 @@ class Evaluation extends Model
     {
         return $this->belongsTo(EvaluationType::class);
     }
-
-
     public function pairResult()
     {
         return $this->hasMany(PairResult::class);
+    }
+    public function detailEvaluations()
+    {
+        return $this->hasMany(DetailEvaluation::class);
     }
 
 }

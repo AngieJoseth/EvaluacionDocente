@@ -20,9 +20,12 @@ class DetailEvaluation extends Model implements Auditable
     {
         return $this->belongsTo(State::class);
     }
-
     public function detailEvaluationable()
     {
         return $this->morphTo();
+    }
+    public function evaluation()
+    {
+        return $this->belongsTo(Evaluation::class);
     }
 }

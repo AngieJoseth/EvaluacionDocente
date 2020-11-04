@@ -38,9 +38,13 @@ class Question extends Model implements Auditable
         return $this->belongsTo(Catalogue::class);
     }
 
-    public function answerQuestion()
+ /*    public function answerQuestion()
     {
         return $this->hasMany(AnswerQuestion::class);
+    } */
+    public function answers()
+    {
+        return $this->belongsToMany(Answer::class,'answer_question','question_id', 'answer_id')->withTimestamps();
     }
 
 

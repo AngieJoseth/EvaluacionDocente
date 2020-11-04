@@ -17,6 +17,8 @@ class CreateDetailEvaluationsTable extends Migration
             $table->id();               
             $table->foreignId('state_id')->constrained('ignug.states');
             $table->morphs('detail_evaluationable');
+            $table->foreignId('evaluation_id')->constrained();
+            $table->double('result',5,2)->nullable();
             $table->timestamps();
         });
     }
