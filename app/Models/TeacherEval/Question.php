@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 use OwenIt\Auditing\Contracts\Auditable;
 use App\Models\Ignug\State;
 use App\Models\Ignug\Catalogue;
+use App\Models\TeacherEval\Answer;
+
 
 class Question extends Model implements Auditable
 {
