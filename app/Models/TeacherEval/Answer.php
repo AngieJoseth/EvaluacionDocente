@@ -31,11 +31,11 @@ class Answer extends Model implements Auditable
     {
         return $this->belongsTo(Catalogue::class);
     }
-
-/*     public function answerQuestion()
+ 
+    public function answerQuestion()
     {
         return $this->hasMany(AnswerQuestion::class);
-    } */
+    } 
 
     public function questions()
     {

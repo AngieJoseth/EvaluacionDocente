@@ -18,8 +18,7 @@ class CreateAnswersTable extends Migration
             $table->string('code')->unique();
             $table->integer('order');
             $table->string('name')->unique();
-            $table->string('value');
-            $table->foreignId('type_id')->constrained('ignug.catalogues');      
+            $table->string('value');   
             $table->foreignId('state_id')->constrained('ignug.states');
             $table->timestamps();
         });
